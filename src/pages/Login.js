@@ -1,11 +1,10 @@
-import React from "react";
+import React from "react"
 import Button from '@material-ui/core/Button';
 import MainText from "components/MainText"
 import { displayTimesOfDay } from "utils"
 
 
 const Login = () => {
-
   return (
     <>
       <div style={{

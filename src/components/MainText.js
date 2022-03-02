@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import PropTypes from 'prop-types';
 
 const MainText = ({ text }) => {
     return (
@@ -12,5 +13,8 @@ const MainText = ({ text }) => {
     );
 }
 
+MainText.propTypes = {
+    text: PropTypes.string
+}
 
 export default MainText;

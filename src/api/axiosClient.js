@@ -1,7 +1,5 @@
-import React from "react";
 import axios from "axios";
 import queryString from "query-string";
-import { toast } from "react-toastify";
 
 
 
@@ -35,7 +33,6 @@ axiosClient.interceptors.response.use(
   (error) => {
     // handle error
     const statusCode = error.response.status
-    toast.success(<h3>Something when wrong!</h3>)
     console.log(statusCode)
     throw error;
   }

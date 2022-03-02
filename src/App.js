@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { routes } from 'routes'
 import "./App.css"
-import 'react-toastify/dist/ReactToastify.css';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 
