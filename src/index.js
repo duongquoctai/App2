@@ -3,4 +3,11 @@ import ReactDOM from "react-dom";
 //Import App
 import App from "./App";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+import store from './redux/store'
+import { Provider } from 'react-redux'
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.querySelector("#root"));
