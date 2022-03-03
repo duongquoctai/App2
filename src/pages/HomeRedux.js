@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import Layout from "layout"
@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
         <Layout>
-            <MainText text='Home page Redux' />
+            <MainText text='Home Redux page ' />
             <Grid container direction="row"
                 justifyContent="center"
                 alignItems="center" spacing={3} >
@@ -72,6 +72,9 @@ const Home = () => {
                     })
                 }
             </Grid>
+            <Button color="primary" variant="outlined"
+                href={`/home-redux`} style={{ marginTop: "3%" }}
+            >Home page</Button>
         </Layout>
     );
 }
