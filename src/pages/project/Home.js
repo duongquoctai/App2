@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import MainText from "components/MainText";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,9 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { Button, Grid } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-// Redux
-import { fetchUsers } from "../redux/users/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { userAPI } from "api/Users";
 
 const useStyles = makeStyles({
   root: {
@@ -28,17 +26,18 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
-  const userInfo = useSelector((state) => state.userReducer.users);
-  const dispatch = useDispatch();
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchUsers());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    (async () => {
+      const data = await userAPI.getUsers();
+      setUsers(data);
+    })();
   }, []);
 
   return (
     <>
-      <MainText text="Home Redux page " />
+      <MainText text="Project homepage" />
       <Grid
         container
         direction="row"
@@ -46,7 +45,7 @@ const Home = () => {
         alignItems="center"
         spacing={3}
       >
-        {userInfo.data.map((user) => {
+        {users.map((user) => {
           return (
             <Grid item key={user.id}>
               <Card className={classes.root}>
@@ -78,11 +77,11 @@ const Home = () => {
       <Button
         color="primary"
         variant="outlined"
-        to="/home"
+        to="/home-redux"
         component={RouterLink}
         style={{ marginTop: "3%" }}
       >
-        Home page
+        Project homepage
       </Button>
     </>
   );

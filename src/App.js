@@ -1,38 +1,23 @@
 import React, { Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
-import { routes } from 'routes'
-import "./App.css"
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { createBrowserHistory } from "history";
+import { Provider } from "react-redux";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { Router } from "react-router-dom";
+import routes, { renderRoutes } from "./routes";
+import "./App.css";
+import store from "./redux/store";
 
+const history = createBrowserHistory();
 
-
-
-const App = () => (
-  <Router>
-    <Suspense
-      fallback={
-        <LinearProgress />
-      }>
-      <Switch>
-        {routes.map((route, i) => (
-          <Route
-            key={i}
-            exact={route.exact}
-            path={route.path}
-            render={props => (
-              <route.page {...props} />
-            )}
-          />
-        ))}
-      </Switch>
+function App() {
+  console.log(routes);
+  return (
+    <Suspense fallback={<LinearProgress />}>
+      <Provider store={store}>
+        <Router history={history}>{renderRoutes(routes)}</Router>
+      </Provider>
     </Suspense>
-
-  </Router>
-
-);
+  );
+}
 
 export default App;
